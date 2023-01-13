@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        .index {
+            background-color: antiquewhite;
+            width: fit-content;
+            align-content: center;
+            align-items: center;
+            margin: auto;
+        }
+
+        .buttons {
+            align-content: center;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="index">
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    {% endfor %}
+
+    <h3>Welcome to My django app</h3>
+
+    {% if user.is_authenticated %}
+    <h3>Hello {{ fname }}</h3>
+    <h4>You're logged in</h4>
+    <br>
+    <br>
+    <!-- <p>Note:</p> -->
+    <ul>
+        <li>Notes:
+            <ul>
+                <li>You can't vote for your poll</li>
+                <li>You can't vote twice for a poll</li>
+                <li>If you do any mistake you will get an error</li>
+            </ul>
+        </li>
+    </ul>
+    <br>
+    <br>
+    <br/>
+    <button type="submit" class="buttons"><a href="/polls/poll">See Polls and create your own</a></button>
+    <br/>
+    <button type="submit" class="buttons"><a href="/polls/vote">Vote to poll</a></button>
+    <br/>
+    <button type="submit" class="buttons"><a href="/polls/poll/my_poll/">My Polls</a></button>    
+    <br/>
+    <button type="submit" class="buttons"><a href="/polls/customers/me">My profile</a></button>
+    <br/>
+    <button type="submit" class="buttons"><a href="/signout">SignOut</a></button>
+    {% else %}
+    <button type="submit" class="buttons"><a href="/signup">SignUp</a></button>
+    <br/>
+    <br/>
+    <button type="submit"><a href="/signin">SignIn</a></button>
+    {% endif %}
+</div>
+</body>
+</html>
